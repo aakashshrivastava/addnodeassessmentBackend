@@ -1,6 +1,6 @@
 package com.altassianassessment.backend.controllers;
 
-import com.altassianassessment.backend.models.Configurations;
+import com.altassianassessment.backend.models.Configuration;
 import com.altassianassessment.backend.services.ConfigurationsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,24 +18,24 @@ public class ConfigurationsController {
     private ConfigurationsService configurationsService;
 
     @GetMapping
-    public ResponseEntity<List<Configurations>> getAllConfigurations() {
+    public ResponseEntity<List<Configuration>> getAllConfigurations() {
         return new ResponseEntity<>(configurationsService.getAllConfigurations(),HttpStatus.OK) ;
     }
 
     @GetMapping("/{id}")
-    public Configurations getConfigurationById(@PathVariable Long id) {
+    public Configuration getConfigurationById(@PathVariable Long id) {
         return configurationsService.getConfigurationById(id);
     }
 
     @PostMapping
-    public ResponseEntity<Configurations> createConfiguration(@RequestBody Configurations configurations) {
-        return new ResponseEntity<>(configurationsService.saveConfiguration(configurations),HttpStatus.OK);
+    public ResponseEntity<Configuration> createConfiguration(@RequestBody Configuration configuration) {
+        return new ResponseEntity<>(configurationsService.saveConfiguration(configuration),HttpStatus.OK);
     }
 
     @PutMapping("/{id}")
-    public Configurations updateConfiguration(@PathVariable Long id, @RequestBody Configurations configurations) {
-        configurations.setId(id);
-        return configurationsService.saveConfiguration(configurations);
+    public Configuration updateConfiguration(@PathVariable Long id, @RequestBody Configuration configuration) {
+        configuration.setId(id);
+        return configurationsService.saveConfiguration(configuration);
     }
 
     @DeleteMapping("/{id}")
